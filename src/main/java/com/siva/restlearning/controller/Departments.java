@@ -9,13 +9,10 @@ import java.util.HashMap;
 @RestController
 @RequestMapping("/departments")
 public class Departments {
-
     HashMap<String , String> departments = new HashMap<>();
-  
-
-    
-
+    //constructor is called when you need to intize  the data through  datastructures
     Departments() {
+    
     departments.put("CSE", "Computer Science and Engineering");
 
     departments.put("ECE", "Electronics and Communication Engineering");
