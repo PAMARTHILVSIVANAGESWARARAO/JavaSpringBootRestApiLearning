@@ -9,3 +9,8 @@
 
 ## Day2 : Completed How To Return Status Codes , Object Of Arrays and Array of Objects Under The Files
  <li><ul>Product.java</ul><ul> Department.java</ul><ul> Courses.java</ul>
+
+
+ ## Day3 : Mastered Datastructures Over Real world Data In the Format of Json And Based On Comparision Nested Datastructures Created And Implemented CRUD operative Methods
+
+ **src : Recipe.java ; Reference:https://dummyjson.com/recipes**
