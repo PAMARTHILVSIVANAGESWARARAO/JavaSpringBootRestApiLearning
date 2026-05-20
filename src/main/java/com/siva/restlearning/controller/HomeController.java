@@ -14,6 +14,7 @@ public class HomeController {
 
         hm.put("message", "API is working");
         hm2.put("message", "API is healthy");
+        System.out.println("HomeController is Active Now");
     }
     @GetMapping
     public HashMap<String, String> home() {
