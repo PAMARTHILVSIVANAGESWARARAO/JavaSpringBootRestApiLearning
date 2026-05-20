@@ -14,3 +14,7 @@
  ## Day3 : Mastered Datastructures Over Real world Data In the Format of Json And Based On Comparision Nested Datastructures Created And Implemented CRUD operative Methods
 
  **src : Recipe.java ; Reference:https://dummyjson.com/recipes**
+
+ ## Day4 : Changing Default Port 
+ #### check Out `application.properties` 
+ ###### To Write An Route Active Check Log In Constructor Write Log AT the Time Of Object creation it prints the Log  
