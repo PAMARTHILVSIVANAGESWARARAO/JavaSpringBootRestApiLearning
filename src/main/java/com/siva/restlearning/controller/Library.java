@@ -11,6 +11,7 @@ import java.util.LinkedHashMap;
 
 @RestController
 @RequestMapping("/library")
+
 public class Library {
     // LinkedHashMap maintains insertion order
     // HashMap does not guarantee any order
@@ -20,6 +21,8 @@ public class Library {
     ArrayList<HashMap<String, String>> arr = new ArrayList<>();
 
     public Library() {
+
+        System.out.println("\n\n Library is Active Now check it out by hitting localhost:9090/library/book \n\n");
         hm.put("name", "Core Java");
         hm.put("author", "Horstmann");
         hm.put("copies", "5");
