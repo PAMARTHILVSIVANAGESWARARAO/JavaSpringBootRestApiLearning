@@ -24,7 +24,7 @@
 
  Day5 : Learned about the CSR which refers to Controllers,Service,Repository  as the spring follows 
  Browser  ->  Controller  ->  Service  -> Repository   , in which repository is always interface which defines rules , service contains main logic at which it provides service by considering data from the repository , controller just transfers the request to service and shows the o/p This separation of responsibilities makes the application clean, organized, easy to understand, and easier to maintain as the project grows.   
- ## This progress is from bhargav on day-5 where siva worked on the Web Scraping and successful
+ ` This progress is from bhargav on day-5 where siva worked on the Web Scraping and successful `
 
 
 ## Day 6: Understanding Flow Between MVC Folders
