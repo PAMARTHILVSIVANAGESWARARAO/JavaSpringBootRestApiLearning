@@ -1,10 +1,12 @@
-package com.siva.restlearning.controller;
+package com.siva.restlearning.BhargavFolderMVC;
 import java.util.*;
 import org.springframework.stereotype.Repository;
+
 interface CSR_Repository
 {
     ArrayList<HashMap<String,Integer>> getData();
 }
+
 @Repository
 public class CSR_RepositoryImpl
 implements CSR_Repository

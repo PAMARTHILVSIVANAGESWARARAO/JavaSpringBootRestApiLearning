@@ -1,4 +1,4 @@
-package com.siva.restlearning.controller;
+package com.siva.restlearning.BhargavFolderMVC;
 import java.util.*;
 import org.springframework.stereotype.Service;
 interface CSR_Service
