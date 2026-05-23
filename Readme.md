@@ -229,3 +229,10 @@ RecipeRepository extends JpaRepository<Recipe, Integer>
 | Status codes | Controller decides success and failure responses |
 
 This foundation makes JDBC, JPA, Hibernate, and database integration easier to understand next.
+
+
+## Day 7: Practicing MVC Layer Archetecture Using Java DataStructures And Custom Data Objects Using model
+
+<img src="src/main/resources/static/WhatsApp Image 2026-05-22 at 9.22.15 PM.jpeg" alt="Layered Archetecture Diagram">
+
+`Progress From Siva Is Under SivasFolderMVC And Day 7 work Done Uisng Product`
