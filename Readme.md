@@ -263,9 +263,6 @@ This foundation makes JDBC, JPA, Hibernate, and database integration easier to u
 
 `Progress From Siva Is Under SivasFolderMVC And Day 7 work Done Uisng Product`
 
-
-
-
 <hr>
 <br>
 <hr>
