@@ -1,9 +1,12 @@
 package com.siva.restlearning.BhargavFolderMVC.Testing_with_database.Controller;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,8 +20,12 @@ public class BookController {
     private BookService service;
 
     @GetMapping("/books")
-    public List<Book> showBooks() {
+    public ResponseEntity<?> showBooks() {
 
-        return service.getAllBooks();
+        HashMap<String, List<Book>> map = new HashMap<>();
+        
+        map.put("books", service.getAllBooks());
+
+        return new ResponseEntity<>(map , HttpStatus.OK);
     }
 }
