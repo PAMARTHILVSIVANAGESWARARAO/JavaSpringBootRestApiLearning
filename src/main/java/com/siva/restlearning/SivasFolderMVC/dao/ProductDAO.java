@@ -14,6 +14,7 @@ public class ProductDAO {
     ArrayList<Product> products = new ArrayList<>();
 
     public ProductDAO() {
+        
         for (int i = 1; i <= 10; i++) {
 
             ArrayList<String> tags = new ArrayList<>();

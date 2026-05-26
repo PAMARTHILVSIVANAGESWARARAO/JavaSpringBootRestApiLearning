@@ -158,6 +158,7 @@ public class Product {
     }
 
     public Product() {
+       
     }
 
     public Product(Integer id, String title, String description, String category, Double price,
