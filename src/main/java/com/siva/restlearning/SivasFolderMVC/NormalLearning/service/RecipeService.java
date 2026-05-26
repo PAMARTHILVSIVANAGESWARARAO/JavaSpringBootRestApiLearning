@@ -1,7 +1,7 @@
-package com.siva.restlearning.SivasFolderMVC.service;
+package com.siva.restlearning.SivasFolderMVC.NormalLearning.service;
 
-import com.siva.restlearning.SivasFolderMVC.dao.RecipeDAO;
-import com.siva.restlearning.SivasFolderMVC.model.Recipe;
+import com.siva.restlearning.SivasFolderMVC.NormalLearning.dao.RecipeDAO;
+import com.siva.restlearning.SivasFolderMVC.NormalLearning.model.Recipe;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

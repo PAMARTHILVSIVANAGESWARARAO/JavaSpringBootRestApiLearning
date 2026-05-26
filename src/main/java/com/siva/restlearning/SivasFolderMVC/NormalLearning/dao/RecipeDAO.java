@@ -1,6 +1,6 @@
-package com.siva.restlearning.SivasFolderMVC.dao;
+package com.siva.restlearning.SivasFolderMVC.NormalLearning.dao;
 
-import com.siva.restlearning.SivasFolderMVC.model.Recipe;
+import com.siva.restlearning.SivasFolderMVC.NormalLearning.model.Recipe;
 
 import org.springframework.stereotype.Repository;
 

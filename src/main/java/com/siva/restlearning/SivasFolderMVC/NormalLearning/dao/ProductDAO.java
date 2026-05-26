@@ -1,4 +1,4 @@
-package com.siva.restlearning.SivasFolderMVC.dao;
+package com.siva.restlearning.SivasFolderMVC.NormalLearning.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.TreeMap;
 
 import org.springframework.stereotype.Repository;
 
-import com.siva.restlearning.SivasFolderMVC.model.Product;
+import com.siva.restlearning.SivasFolderMVC.NormalLearning.model.Product;
 
 @Repository
 public class ProductDAO {

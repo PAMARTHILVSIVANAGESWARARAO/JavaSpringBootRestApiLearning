@@ -1,4 +1,4 @@
-package com.siva.restlearning.SivasFolderMVC.model;
+package com.siva.restlearning.SivasFolderMVC.NormalLearning.model;
 
 import java.util.ArrayList;
 import java.util.TreeMap;

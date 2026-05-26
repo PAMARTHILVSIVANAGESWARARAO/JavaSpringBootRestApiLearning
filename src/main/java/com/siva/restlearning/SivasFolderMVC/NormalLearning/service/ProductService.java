@@ -1,11 +1,11 @@
-package com.siva.restlearning.SivasFolderMVC.service;
+package com.siva.restlearning.SivasFolderMVC.NormalLearning.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.siva.restlearning.SivasFolderMVC.dao.ProductDAO;
-import com.siva.restlearning.SivasFolderMVC.model.Product;
+import com.siva.restlearning.SivasFolderMVC.NormalLearning.dao.ProductDAO;
+import com.siva.restlearning.SivasFolderMVC.NormalLearning.model.Product;
 
 @Service
 public class ProductService {

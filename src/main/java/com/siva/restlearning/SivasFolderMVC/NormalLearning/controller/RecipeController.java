@@ -1,7 +1,7 @@
-package com.siva.restlearning.SivasFolderMVC.controller;
+package com.siva.restlearning.SivasFolderMVC.NormalLearning.controller;
 
-import com.siva.restlearning.SivasFolderMVC.model.Recipe;
-import com.siva.restlearning.SivasFolderMVC.service.RecipeService;
+import com.siva.restlearning.SivasFolderMVC.NormalLearning.model.Recipe;
+import com.siva.restlearning.SivasFolderMVC.NormalLearning.service.RecipeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
