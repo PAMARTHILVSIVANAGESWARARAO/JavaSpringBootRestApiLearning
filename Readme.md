@@ -269,3 +269,6 @@ This foundation makes JDBC, JPA, Hibernate, and database integration easier to u
 <br>
 <hr>
 <br>
+
+## Day8: Understand How To Manage Environment Variables and How to create tables In DB With some of custom Field properties 
+
