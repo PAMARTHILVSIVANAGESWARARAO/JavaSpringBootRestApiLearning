@@ -28,4 +28,13 @@ public class BookController {
 
         return new ResponseEntity<>(map , HttpStatus.OK);
     }
+    @GetMapping("/books1")
+    public ResponseEntity<?> showBooks1() { 
+        
+        HashMap<String, List<Book>> map = new HashMap<>();
+        
+        map.put("books", service.getAllBooks1());
+
+        return new ResponseEntity<>(map , HttpStatus.OK);
+    }
 }

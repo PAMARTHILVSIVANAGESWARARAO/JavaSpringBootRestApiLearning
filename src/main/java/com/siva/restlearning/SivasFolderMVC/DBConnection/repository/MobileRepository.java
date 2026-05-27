@@ -15,7 +15,5 @@ public interface MobileRepository extends JpaRepository<Mobile, Long> {
     // Automaatically implemented by Spring Data JPA based on method name
     List<Mobile> findByBrand(String brand); 
 
-
-
     
 }

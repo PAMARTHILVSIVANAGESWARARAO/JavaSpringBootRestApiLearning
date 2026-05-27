@@ -24,5 +24,8 @@ public class BookService {
 
         return repo.findAll();
     }
+    public List<Book> getAllBooks1() {
+        return repo.getAllBooks1();
+    }
 }
 
