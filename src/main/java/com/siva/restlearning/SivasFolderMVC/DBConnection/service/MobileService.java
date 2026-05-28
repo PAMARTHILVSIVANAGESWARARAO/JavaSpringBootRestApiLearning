@@ -64,7 +64,8 @@ public class MobileService {
     }
 
 
-    public ResponseEntity<?> deleteMobile(Long id) {
+    @SuppressWarnings("null")
+    public ResponseEntity<?> deleteMobile(@NonNull Long id) {
         // Finding The Mobile By Id, If Found Then Delete It, If Not Found Then Return 404 Response
         return mobileRepository.findById(id).map(mobile -> {
             // The above line is for finding the item based on id, if found then delete it, if not found then return 404 response

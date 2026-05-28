@@ -51,9 +51,16 @@ public class MobileController {
     public ResponseEntity<?> insertManyMobilesByQuery(@RequestBody List<Mobile> mobiles) {
         
        
+        // Using Basic Dsa Interation To Insert Each Mobile Individually Using The addMobileByQuery Method In The Service Layer And Handling Any Potential Errors That May Occur During The Insertion Process
 
-        for (Mobile mobile : mobiles) {
-            mobileService.addMobileByQuery(mobile);
+        for(int i = 0; i < mobiles.size(); i++) {
+            Mobile mobile = mobiles.get(i); 
+            // Getting The Mobile Object At The Current Index From The List Of Mobiles Received In The Request Body
+            String result = mobileService.addMobileByQuery(mobile);
+            // Calling The addMobileByQuery Method In The Service Layer To Insert The Mobile Into The Database And Storing The Result (Success Message Or Error Message) In A Variable Called result
+            if(result == null) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to insert mobile at index: " + i);
+            }
         }
 
         // Same ResponseEntity Can Be Created Using ResponseEntity.ok() Method Which Sets The Status To 200 Automatically
