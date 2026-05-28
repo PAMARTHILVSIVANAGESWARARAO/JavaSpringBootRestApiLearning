@@ -59,6 +59,7 @@ public class MobileController {
             String result = mobileService.addMobileByQuery(mobile);
             // Calling The addMobileByQuery Method In The Service Layer To Insert The Mobile Into The Database And Storing The Result (Success Message Or Error Message) In A Variable Called result
             if(result == null) {
+                // Checking If The Result Is Null, Which Indicates That The Insertion Failed For Some Reason (e.g., Database Error, Invalid Data, etc.)
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to insert mobile at index: " + i);
             }
         }
