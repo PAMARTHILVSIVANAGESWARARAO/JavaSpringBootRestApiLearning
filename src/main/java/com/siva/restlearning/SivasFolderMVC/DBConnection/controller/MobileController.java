@@ -38,6 +38,12 @@ public class MobileController {
         return mobileService.addMobile(mobile);
     }
 
+    @PostMapping("addbyquery")
+    public String addMobileByQuery(@RequestBody @NonNull Mobile mobile) {
+        return mobileService.addMobileByQuery(mobile);
+
+    }
+
     
 
 

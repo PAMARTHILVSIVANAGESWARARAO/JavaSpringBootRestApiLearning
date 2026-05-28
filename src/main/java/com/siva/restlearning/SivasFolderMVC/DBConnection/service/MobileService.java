@@ -35,4 +35,10 @@ public class MobileService {
         return mobileRepository.findByBrand(brand);
     }
 
+
+    public String addMobileByQuery(Mobile mobile) {
+        // TODO Auto-generated method stub
+        return mobileRepository.addMobileByQuery(mobile.getBrand(), mobile.getModel(), mobile.getPrice());
+    }
+
 }

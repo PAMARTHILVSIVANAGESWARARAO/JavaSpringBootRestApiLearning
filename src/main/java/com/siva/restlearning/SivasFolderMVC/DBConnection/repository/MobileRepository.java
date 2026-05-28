@@ -13,7 +13,10 @@ public interface MobileRepository extends JpaRepository<Mobile, Long> {
     List<Mobile> getAllData();
 
     // Automaatically implemented by Spring Data JPA based on method name
-    List<Mobile> findByBrand(String brand); 
+    List<Mobile> findByBrand(String brand);
+
+    @Query(value = "INSERT INTO mobile_information (brand, model, price) VALUES (?1, ?2, ?3)", nativeQuery = true)
+    String addMobileByQuery(String brand, String model, double price); 
 
     
 }
