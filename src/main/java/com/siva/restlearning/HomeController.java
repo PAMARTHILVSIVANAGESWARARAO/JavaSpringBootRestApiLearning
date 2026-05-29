@@ -15,4 +15,11 @@ public class HomeController {
         home.put("message", " Api is Working Fine..");
         return home;
     }
+
+    @GetMapping("*")
+    public HashMap<String,String> InvalidRoute(){
+        HashMap<String,String> hm = new HashMap<>();
+        hm.put("message", "Invalid Route , route does n t exists ");
+        return hm;
+    }
 }
