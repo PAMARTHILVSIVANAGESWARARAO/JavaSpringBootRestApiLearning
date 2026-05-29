@@ -25,5 +25,7 @@ public interface MobileRepository extends JpaRepository<Mobile, Long> {
 
     @Query(value = "SELECT * FROM mobile_information WHERE brand = ?1", nativeQuery = true)
     List<Mobile> getMobilesByBrand(String brand);
+
+    List<Mobile> findByBrand(String brand);
     
 }

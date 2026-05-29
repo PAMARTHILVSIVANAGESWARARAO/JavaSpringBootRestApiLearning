@@ -4,18 +4,21 @@ package com.siva.restlearning.BhargavFolderMVC.Testing_with_database.Entity;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+
+@NoArgsConstructor
+
+
 @Entity
 @Table(name = "booksiva")
 public class Book {
     int c=0;
-    Book()
-    {
-        c++;
-        System.out.println("Book Object Created " + c);
-    }
+    
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

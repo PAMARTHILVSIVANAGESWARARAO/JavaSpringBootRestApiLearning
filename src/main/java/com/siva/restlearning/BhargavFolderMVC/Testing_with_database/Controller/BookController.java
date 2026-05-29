@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.siva.restlearning.BhargavFolderMVC.Testing_with_database.Entity.Book;
 import com.siva.restlearning.BhargavFolderMVC.Testing_with_database.Service.BookService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @RestController
 public class BookController {
@@ -37,4 +40,12 @@ public class BookController {
 
         return new ResponseEntity<>(map , HttpStatus.OK);
     }
+    @PostMapping("/insertMany")
+
+    public ResponseEntity<?> insertMany(@RequestBody List<Book> books) {
+        return service.insertMany(books);
+        
+    
+    }
+    
 }

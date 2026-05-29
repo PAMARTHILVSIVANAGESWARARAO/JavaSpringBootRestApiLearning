@@ -59,7 +59,7 @@ public class MobileService {
 
     public List<Mobile> getMobilesByBrand(String brand) {
         // TODO Auto-generated method stub
-        return mobileRepository.getMobilesByBrand(brand);
+        return mobileRepository.findByBrand(brand);
     }
 
 }

@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+@Data   //instead of writing getters and setters we can use this annotation
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
