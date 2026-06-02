@@ -2,6 +2,7 @@ package com.siva.restlearning.SivasFolderMVC.relationships.OTO;
 
 import java.util.List;
 
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public UserModel getById(Long id) {
+    public UserModel getById(@NonNull Long id) {
         return userRepository.findById(id)
                 .orElseThrow();
     }
@@ -32,7 +33,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public void delete(Long id) {
+    public void delete(@NonNull Long id) {
         userRepository.deleteById(id);
     }
 }
