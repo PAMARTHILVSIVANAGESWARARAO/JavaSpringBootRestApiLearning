@@ -58,8 +58,13 @@ public class MobileService {
 
 
     public List<Mobile> getMobilesByBrand(String brand) {
+<<<<<<< HEAD
         // TODO Auto-generated method stub
         return mobileRepository.findByBrand(brand);
+=======
+
+        return mobileRepository.getMobilesByBrand(brand);
+>>>>>>> 8499f3e (Implement One-To-One relationship between User and Cart models with corresponding service and controller layers)
     }
 
 }

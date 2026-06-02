@@ -1058,6 +1058,224 @@ Client
 
 </details>
 
+## Day 10 : Relationships (One To One - OTO)
+
+Day 10 goal was to understand and implement **JPA relationships** using the existing `SivasFolderMVC/relationships/OTO` folder.
+
+---
+
+### ✅ What Was Implemented (OTO = User ↔ Cart)
+This project implements a **One-To-One** relationship:
+- `UserModel` ↔ `CartModel`
+- In database terms:
+  - `oto_users` table holds the user
+  - `oto_carts` table holds the cart
+  - `oto_carts` contains a foreign key `user_id` pointing to `oto_users.id`
+
+<img src="target/classes/static/Screenshot From 2026-06-02 17-22-43.png">
+
+---
+
+### 1) Entity: `UserModel` (Inverse/Non-owning side)
+File: `SivasFolderMVC/relationships/OTO/UserModel.java`
+
+```java
+@Data
+@Entity
+@Table(name = "oto_users")
+public class UserModel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private Long id;
+
+    @Column(name = "user_name")
+    private String name;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private CartModel cart;
+}
+```
+
+Key points from the code:
+- Table mapping: `@Table(name = "oto_users")`
+- Primary key: `id` is generated (`IDENTITY`) and stored in column `user_id`
+- Relationship mapping:
+  - `@OneToOne(mappedBy = "user")`
+  - `mappedBy = "user"` means **UserModel is not the FK holder**.
+  - The *owning side* is the side that contains the `@JoinColumn` (implemented in `CartModel`).
+- Cascade: `cascade = CascadeType.ALL`
+  - If you save/delete a `UserModel`, JPA will also save/delete the related `cart`.
+
+---
+
+### 2) Entity: `CartModel` (Owning side / FK holder)
+File: `SivasFolderMVC/relationships/OTO/CartModel.java`
+
+```java
+@Data
+@Entity
+@Table(name = "oto_carts")
+public class CartModel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private Double total;
+
+    @OneToOne
+    @JoinColumn(name = "user_id" , nullable = false)
+    @JsonIgnore
+    private UserModel user;
+}
+```
+
+Key points from the code:
+- Table mapping: `@Table(name = "oto_carts")`
+- Relationship mapping:
+  - `@JoinColumn(name = "user_id", nullable = false)` creates the FK column in `oto_carts`
+  - This is the **owning side**, so changes to `CartModel.user` are what define the FK.
+- `@JsonIgnore` is critical:
+  - Without it, JSON serialization would loop like:
+    - User has cart
+    - Cart has user
+    - User has cart...
+  - `@JsonIgnore` prevents infinite recursion when returning API responses.
+
+---
+
+### 3) Service Layer: Keeping both sides consistent
+File: `SivasFolderMVC/relationships/OTO/UserService.java`
+
+```java
+public UserModel save(UserModel user) {
+    if (user.getCart() != null) {
+        user.getCart().setUser(user);
+    }
+    return userRepository.save(user);
+}
+```
+
+Why this is done:
+- Because `CartModel` is the owning side (FK lives in `CartModel` table)
+- When you POST a `UserModel` with nested `cart`, JPA may not automatically set the owning side reference.
+- This line ensures:
+  - `user.cart.user = user`
+  - So the `user_id` FK in `oto_carts` is correctly populated.
+
+---
+
+### 4) Controller Routes (Public API)
+File: `SivasFolderMVC/relationships/OTO/UserController.java`
+
+```java
+@RestController
+@RequestMapping("oto/users")
+public class UserController {
+
+    @PostMapping
+    public UserModel save(@RequestBody UserModel user) {
+        return userService.save(user);
+    }
+
+    @GetMapping("/{id}")
+    public UserModel getById(@PathVariable Long id) {
+        return userService.getById(id);
+    }
+
+    @GetMapping
+    public List<UserModel> getAll() {
+        return userService.getAll();
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        userService.delete(id);
+    }
+}
+```
+
+#### Endpoints Table
+| Method | Path | Controller method | Service method |
+|---|---|---|---|
+| POST | `/oto/users` | `save()` | `UserService.save()` |
+| GET | `/oto/users/{id}` | `getById()` | `UserService.getById()` |
+| GET | `/oto/users` | `getAll()` | `UserService.getAll()` |
+| DELETE | `/oto/users/{id}` | `delete()` | `UserService.delete()` |
+
+---
+
+### 5) Repository (JPA handles DB work)
+File: `SivasFolderMVC/relationships/OTO/UserRepository.java`
+
+```java
+public interface UserRepository extends JpaRepository<UserModel, Long> {}
+```
+
+Because it extends `JpaRepository`, you automatically get:
+- `save(user)`
+- `findById(id)`
+- `findAll()`
+- `deleteById(id)`
+
+---
+
+### 6) JSON + API behavior (what you actually see)
+
+#### ✅ POST Request (User + Cart)
+When you send a nested payload, the service ensures cart ownership is set.
+
+<img src="target/classes/static/Screenshot From 2026-06-02 17-24-34.png">
+
+Example request body (conceptual):
+```json
+{
+  "name": "Siva",
+  "cart": {
+    "total": 250.0
+  }
+}
+```
+
+What happens internally:
+1. `UserController.save()` receives JSON → builds `UserModel` object graph
+2. `UserService.save()` sets `user.cart.user = user`
+3. `userRepository.save(user)` persists:
+   - insert into `oto_users`
+   - insert into `oto_carts` with FK `user_id`
+
+#### ✅ GET Request (User returned without recursion)
+Because `CartModel.user` is `@JsonIgnore`, the returned JSON will not contain the nested back-reference.
+
+<img src="target/classes/static/Screenshot From 2026-06-02 17-25-57.png">
+
+So response shape is like:
+- `UserModel` contains `cart`
+- `CartModel` does NOT contain `user`
+
+---
+
+### 7) Delete behavior (cascade effect)
+Because `UserModel` has `cascade = CascadeType.ALL`, deleting a user will also delete its cart.
+
+Flow:
+- `DELETE /oto/users/{id}`
+- `userRepository.deleteById(id)`
+- cascade triggers delete on `user.cart`
+
+---
+
+### Day 10 Key Learnings
+| Concept | What I Learned |
+|---|---|
+| `mappedBy` | Inverse side doesn’t hold FK; owning side does |
+| `@JoinColumn` | Owning side stores FK (here: `CartModel.user_id`) |
+| Cascade | Saving/deleting user also saves/deletes cart |
+| `@JsonIgnore` | Prevent infinite JSON recursion |
+| Owning-side consistency | `UserService.save()` sets `cart.user = user` so FK is correct |
+
 
 
 
