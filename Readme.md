@@ -1275,7 +1275,3 @@ Flow:
 | Cascade | Saving/deleting user also saves/deletes cart |
 | `@JsonIgnore` | Prevent infinite JSON recursion |
 | Owning-side consistency | `UserService.save()` sets `cart.user = user` so FK is correct |
-
-
-
-
