@@ -1282,3 +1282,7 @@ Flow:
 
 
 
+<<<<<<< HEAD
+=======
+## The Progress is postponed to `june 11` due to some eductaional issues ....
+>>>>>>> bc0fddf (docs: fix typo in progress postponement note in Readme.md)
