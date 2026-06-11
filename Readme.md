@@ -1278,11 +1278,13 @@ Flow:
 
 
 ## The Progress is postponed to `june 11` due to some eductaional issues .....
->>>>>>> df0f4a74636b94d978ecdc640f817167bce52d40
 
 
 
-<<<<<<< HEAD
-=======
+
 ## The Progress is postponed to `june 11` due to some eductaional issues ....
->>>>>>> bc0fddf (docs: fix typo in progress postponement note in Readme.md)
+
+
+
+
+
